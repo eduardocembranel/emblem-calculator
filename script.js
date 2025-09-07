@@ -82,6 +82,12 @@ function runSimulation(qualitiesInitial, operation, numSimulations) {
         }
 
         simulations = makeSimulationsIncreaseTwoDecreaseOne(qualitiesInitial, numSimulations);
+    } else if (operation === "increaseOne") {
+        const count5 = qualitiesInitial.filter(q => q === 5).length;
+        if (count5 == n) {
+            return { error: `Não é possivel melhorar pois todos os embleams já possuem qualidade 5` };
+        }
+        simulations = makeSimulationsIncreaseOne(qualitiesInitial, numSimulations)
     } else {
         return { error: "Operação inválida" };
     }
@@ -141,6 +147,29 @@ function applyIncreaseTwoDecreaseOne(qualities) {
     for (const i of indicesToIncrease) {
         newQualities[i] = Math.floor(Math.random() * (5 - newQualities[i])) + newQualities[i] + 1;
     }
+
+    return newQualities;
+}
+
+function makeSimulationsIncreaseOne(initialQualities, numSimulations) {
+    const simulations = [];
+    for (let i = 0; i < numSimulations; i++) {
+        const endQualities = applyIncreaseOne(initialQualities);
+        simulations.push(endQualities);
+    }
+    return simulations;
+}
+
+function applyIncreaseOne(qualities) {
+    const n = qualities.length;
+    const newQualities = [...qualities];
+
+    const idxToIncrease = newQualities
+        .map((q, i) => i)
+        .filter(i => newQualities[i] < 5)
+        .sort(() => 0.5 - Math.random())[0];
+
+    newQualities[idxToIncrease] = Math.floor(Math.random() * (5 - newQualities[idxToIncrease])) + newQualities[idxToIncrease] + 1;
 
     return newQualities;
 }
