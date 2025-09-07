@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Simulador de Operações</h1>
+
+        <!-- Operation selection -->
+        <div class="section">
+            <h2>Selecione a operação:</h2>
+            <label>
+                <input type="radio" name="operation" value="reroll" checked>
+                Renovar qualidades
+            </label>
+            <label>
+                <input type="radio" name="operation" value="increaseTwoDecreaseOne">
+                Aumentar duas qualidades e reduzir uma
+            </label>
+        </div>
+
+        <!-- Dynamic item list -->
+        <div class="section">
+            <h2>Qualidades dos emblemas</h2>
+            <div id="items-container">
+                <div id="items"></div>
+                <div id="buttons-container">
+                    <button id="addItem" class="control-btn">+</button>
+                    <button id="removeItem" class="control-btn remove-btn">−</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calculate button -->
+        <div class="section">
+            <button id="calculate" class="calculate-btn">Calcular</button>
+        </div>
+
+        <!-- Results -->
+        <div class="section">
+            <h2>Resultados</h2>
+            <pre id="results">Nenhum resultado ainda...</pre>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
